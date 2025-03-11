@@ -1,101 +1,648 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { SocialLinks } from '@/components/social-links';
+import { EmailLink } from '@/components/email-link';
+import { SectionTitle } from '@/components/section-title';
+import { Header } from '@/components/header';
+import profile from './profile.jpg';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [mounted, setMounted] = useState(false);
+  const [activeSkill, setActiveSkill] = useState('frontend');
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+  const mainProjects = [
+    {
+      title: 'First Project',
+      description:
+        '프로젝트에 대한 상세한 설명이 들어갑니다. 이 프로젝트는 어떤 문제를 해결하기 위해 시작되었으며, 어떤 기술을 사용했고, 어떤 결과를 얻었는지 설명합니다.',
+      image: '/projectImages/200OK.png',
+      tags: ['React.js', 'JavaScript', 'Tailwind CSS', 'OPEN API'],
+      demoLink: '#',
+      githubLink: 'https://github.com/Sugwan-p/jejumonth-frontend/tree/main',
+    },
+    {
+      title: '프로젝트 2',
+      description:
+        '두 번째 프로젝트에 대한 설명입니다. 프로젝트의 목적, 사용된 기술, 해결한 문제점 등을 자세히 설명합니다.',
+      image: '/placeholder.svg?height=400&width=600',
+      tags: ['React', 'Node.js', 'MongoDB', 'Docker'],
+      demoLink: '#',
+      githubLink: '#',
+    },
+  ];
+
+  const subProjects = [
+    {
+      title: '포토폴리오',
+      description: '개인 포토폴리오 사이트',
+      tags: ['next.js', 'tailwindCSS', 'typescript'],
+      link: '#',
+    },
+    {
+      title: '포토폴리오',
+      description: '개인 포토폴리오 사이트',
+      tags: ['next.js', 'tailwindCSS', 'typescript'],
+      link: '#',
+    },
+    {
+      title: '포토폴리오',
+      description: '개인 포토폴리오 사이트',
+      tags: ['next.js', 'tailwindCSS', 'typescript'],
+      link: '#',
+    },
+  ];
+
+  const skillData = {
+    frontend: [
+      {
+        icon: '/images/html.png',
+        name: 'HTML5',
+        description: '기본적인 HTML 태그를 사용할 수 있습니다.',
+      },
+      {
+        icon: '/images/css.png',
+        name: 'CSS',
+        description: '순수 CSS를 이용하여 레이아웃을 구성할 수 있습니다.',
+      },
+      {
+        icon: '/images/javaScript-logo.png',
+        name: 'JavaScript',
+        description: 'ES6+ 문법을 활용하여 코드를 작성할 수 있습니다.',
+      },
+      {
+        icon: '/images/tsts.png',
+        name: 'TypeScript',
+        description:
+          '타입을 활용하여 명확한 코드를 작성할 수 있으며,\n제네릭, 인터섹, 유니온 타입 등을 사용할 수 있습니다.',
+      },
+      {
+        icon: '/images/react.png',
+        name: 'React',
+        description: 'React를 활용하여 컴포넌트를 작성할 수 있습니다.',
+      },
+      {
+        icon: '/images/next2.png',
+        name: 'Next.js',
+        description:
+          'Next.js를 활용하여 서버 사이드 렌더링을 구현할 수 있습니다.',
+      },
+      {
+        icon: '/images/tailwindcss.png',
+        name: 'Tailwind CSS',
+        description: 'Tailwind CSS를 활용하여 스타일을 작성할 수 있습니다.',
+      },
+      {
+        icon: '/images/vue.png',
+        name: 'Vue.js',
+        description: 'Vue.js를 활용하여 컴포넌트를 작성할 수 있습니다.',
+      },
+    ],
+    backend: [
+      {
+        icon: '/images/node.png',
+        name: 'node.js',
+        description:
+          '부트캠프에서 배운 언어로, 백엔드 서버를 구축 해본 경험이 있습니다.',
+      },
+    ],
+    database: [
+      {
+        icon: '/images/firebase.png',
+        name: 'firebase',
+        description: 'firebase를 활용한 데이터베이스 관리를 경혐했습니다.',
+      },
+      {
+        icon: '/images/supabase.jpg',
+        name: 'supabase',
+        description: 'supabase를 활용한 데이터베이스 관리를 경험했습니다.',
+      },
+    ],
+    tools: [
+      {
+        icon: '/images/git.png',
+        name: 'Git',
+        description: '버전 관리를 위한 Git을 능숙하게 사용할 수 있습니다.',
+      },
+      {
+        icon: '/images/github.png',
+        name: 'GitHub',
+        description: '협업과 코드 리뷰 프로세스를 관리할 수 있습니다.',
+      },
+      {
+        icon: '/images/slack.png',
+        name: 'Slack',
+        description: '협업과 커뮤니케이션을 위한 Slack을 활용할 수 있습니다.',
+      },
+      {
+        icon: '/images/notion.png',
+        name: 'Notion',
+        description: '프로젝트 관리와 협업을 위한 Notion을 활용할 수 있습니다.',
+      },
+    ],
+    etc: [
+      {
+        icon: '/images/figma.png',
+        name: 'Figma',
+        description:
+          '디자인 협업 툴로,\n와이어프레임 및 프로토타입을 제작할 수 있습니다.',
+      },
+      {
+        icon: '/images/ai.png',
+        name: 'Adobe Illustrator',
+        description:
+          'Adobe Illustrator를 활용하여 로고디자인을 제작할 수 있습니다.',
+      },
+      {
+        icon: '/images/ps.png',
+        name: 'Photoshop',
+        description:
+          'Photoshop를 활용하여 이미지 편집 및 조정을 할 수 있습니다.',
+      },
+    ],
+  };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen bg-[#0a1629] text-[#8892b0]">
+        <SocialLinks />
+        <EmailLink />
+
+        {/* Hero Section */}
+        <section className="min-h-screen flex items-center justify-center relative px-4">
+          <div className="max-w-4xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-[#40F8D2] text-lg mb-4"
+            >
+              안녕하세요. 저는 포론트 엔드 개발자
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold mb-6"
+            >
+              박수관입니다.
+            </motion.h1>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-3xl md:text-5xl text-[#8892b0] mb-8"
+            >
+              저는 끊임없는 도전을 즐기며,
+              <br />웹 개발의 매력에 빠져 있습니다.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg max-w-2xl"
+            >
+              사용자에게 먼저 다가갈 수 있는 웹사이트의 프론트엔드 부분을
+              담당하고 있습니다. 제 웹 포트폴리오를 방문해 주셔서 진심으로
+              감사드립니다.
+            </motion.p>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-20 px-4">
+          <div className="max-w-4xl mx-auto">
+            <SectionTitle number="01" title="About Me" />
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-[#40F8D2] mb-4">
+                      [첫인상을 주는 프론트엔드]
+                    </h3>
+                    <p className="text-sm leading-relaxed">
+                      학부생 시절 React, Next.js, Vue.js 를 활용한 웹 개발
+                      경험이 있으며, 사용자에게 먼저 보여지는 프론트엔드에
+                      흥미를 느꼈고 React, Next.js를 활용한 프론트엔드 개발을
+                      주로 진행하고 있습니다.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-[#40F8D2] mb-4">
+                      [성장에 대한 즐거움]
+                    </h3>
+                    <p className="text-sm leading-relaxed">
+                      새로운 프로젝트를 시작할 때마다, 단순히 이전에 사용했던
+                      기술을 활용하는 것이 아닌, 이전 프로젝트에서 아쉬웠던
+                      부분을 개선하고 새로운 코드 스타일이나 기술을 적용하는
+                      것에 큰 즐거움을 느낍니다. 이는 개발에 있어서의 성장을
+                      위한 동력이 되어주고 있습니다.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-[#40F8D2] mb-4">[꺾이지 않는 마음]</h3>
+                    <p className="text-sm leading-relaxed">
+                      프론트엔드 개발은 대부분 팀원들과 함께 협업하며
+                      진행했습니다. 이 과정에서 다양한 문제를 함께 해결해
+                      나가며, 때론 기능 구현에 며칠이 걸리기도 했습니다. 하지만
+                      이런 과정을 통해 개발에 있어서 "해결할 수 없는 문제는
+                      없다"는 확신을 가지게 되었습니다. 이로써, 끝까지 해결해
+                      나갈 수 있는 자신감을 얻게 되었습니다.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="relative w-64 h-64 mx-auto">
+                  <Image
+                    src={profile}
+                    alt="Profile"
+                    fill
+                    className="rounded-lg object-cover z-10 relative"
+                  />
+                  <div className="absolute -right-4 -bottom-4 w-full h-full border-2 border-[#40F8D2] rounded-lg" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="py-12 px-4 bg-[#0d1b31]">
+          <div className="max-w-5xl mx-auto">
+            <Tabs
+              defaultValue="frontend"
+              className="flex w-full items-start [&_*]:!bg-transparent"
+            >
+              {/* 왼쪽 탭 목록 영역 */}
+              <div className="w-1/4 border-r border-[#8892b0] pr-6">
+                <TabsList className="flex flex-col gap-5 items-start w-full p-0 border-none mt-[100px]">
+                  <TabsTrigger
+                    value="frontend"
+                    className="
+                      w-full text-left px-2 py-1 
+                      text-base font-bold 
+                      border-none 
+                      hover:border-b-2
+                      hover:border-[#40F8D2]
+                      hover:text-[#40F8D2] 
+                      data-[state=active]:border-b-2 
+                      data-[state=active]:border-white
+                      data-[state=active]:text-white
+                      transition-all
+                    "
+                  >
+                    FrontEnd
+                  </TabsTrigger>
+
+                  <TabsTrigger
+                    value="backend"
+                    className="
+                      w-full text-left px-2 py-1 
+                      text-base font-bold
+                      border-none 
+                      hover:border-b-2
+                      hover:border-[#40F8D2]
+                      hover:text-[#40F8D2] 
+                      data-[state=active]:border-b-2 
+                      data-[state=active]:border-white
+                      data-[state=active]:text-white
+                      transition-all
+                    "
+                  >
+                    BackEnd
+                  </TabsTrigger>
+
+                  <TabsTrigger
+                    value="database"
+                    className="
+                      w-full text-left px-2 py-1 
+                      text-base font-bold
+                      border-none 
+                      hover:border-b-2
+                      hover:border-[#40F8D2]
+                      hover:text-[#40F8D2] 
+                      data-[state=active]:border-b-2 
+                      data-[state=active]:border-white
+                      data-[state=active]:text-white
+                      transition-all
+                    "
+                  >
+                    Database
+                  </TabsTrigger>
+
+                  <TabsTrigger
+                    value="tools"
+                    className="
+                      w-full text-left px-2 py-1 
+                      text-base font-bold
+                      border-none 
+                      hover:border-b-2
+                      hover:border-[#40F8D2]
+                      hover:text-[#40F8D2] 
+                      data-[state=active]:border-b-2 
+                      data-[state=active]:border-white
+                      data-[state=active]:text-white
+                      transition-all
+                    "
+                  >
+                    Tools
+                  </TabsTrigger>
+
+                  <TabsTrigger
+                    value="etc"
+                    className="
+                      w-full text-left px-2 py-1 
+                      text-base font-bold
+                      border-none 
+                      hover:border-b-2
+                      hover:border-[#40F8D2]
+                      hover:text-[#40F8D2] 
+                      data-[state=active]:border-b-2 
+                      data-[state=active]:border-white
+                      data-[state=active]:text-white
+                      transition-all
+                    "
+                  >
+                    ETC
+                  </TabsTrigger>
+                </TabsList>
+              </div>
+
+              {/* 오른쪽 탭 콘텐츠 영역 */}
+              <div className="flex-1 pl-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#40F8D2] mb-6">
+                  Skill Stack @ Language
+                </h2>
+
+                {/* FrontEnd 탭 내용 */}
+                {/* FrontEnd 탭 내용 */}
+                <TabsContent
+                  value="frontend"
+                  className="bg-transparent min-h-[500px]"
+                >
+                  <div className="grid grid-cols-1 gap-4">
+                    {skillData?.frontend?.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="flex items-center gap-4 p-2"
+                      >
+                        {/* 기존: 동그란 테두리 div 감싸고 있었음 -> 제거 */}
+                        {/* 새로: Image 자체에 width/height를 지정해 동일 크기로 표시 */}
+                        <Image
+                          src={skill.icon}
+                          alt={skill.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                        <div>
+                          <h3 className="text-md font-bold text-[#40F8D2] mb-1">
+                            {skill.name}
+                          </h3>
+                          <p className="text-sm whitespace-pre-line text-[#8892b0] leading-relaxed">
+                            {skill.description}
+                          </p>
+                        </div>
+                      </div>
+                    )) || null}
+                  </div>
+                </TabsContent>
+
+                {/* BackEnd 탭 내용 */}
+                {/* BackEnd 탭 내용 */}
+                <TabsContent
+                  value="backend"
+                  className="bg-transparent min-h-[500px]"
+                >
+                  <div className="grid grid-cols-1 gap-4">
+                    {skillData?.backend?.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="flex items-center gap-4 p-2"
+                      >
+                        <Image
+                          src={skill.icon}
+                          alt={skill.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                        <div>
+                          <h3 className="text-md font-bold text-[#40F8D2] mb-1">
+                            {skill.name}
+                          </h3>
+                          <p className="text-sm whitespace-pre-line text-[#8892b0] leading-relaxed">
+                            {skill.description}
+                          </p>
+                        </div>
+                      </div>
+                    )) || null}
+                  </div>
+                </TabsContent>
+
+                {/* Database 탭 내용 */}
+                <TabsContent
+                  value="database"
+                  className="bg-transparent min-h-[500px]"
+                >
+                  <div className="grid grid-cols-1 gap-4">
+                    {skillData?.database?.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="flex items-center gap-4 p-2"
+                      >
+                        <Image
+                          src={skill.icon}
+                          alt={skill.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                        <div>
+                          <h3 className="text-md font-bold text-[#40F8D2] mb-1">
+                            {skill.name}
+                          </h3>
+                          <p className="text-sm whitespace-pre-line text-[#8892b0] leading-relaxed">
+                            {skill.description}
+                          </p>
+                        </div>
+                      </div>
+                    )) || null}
+                  </div>
+                </TabsContent>
+
+                {/* Tools 탭 내용 */}
+                <TabsContent
+                  value="tools"
+                  className="bg-transparent min-h-[500px]"
+                >
+                  <div className="grid grid-cols-1 gap-4">
+                    {skillData?.tools?.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="flex items-center gap-4 p-2"
+                      >
+                        <Image
+                          src={skill.icon}
+                          alt={skill.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                        <div>
+                          <h3 className="text-md font-bold text-[#40F8D2] mb-1">
+                            {skill.name}
+                          </h3>
+                          <p className="text-sm whitespace-pre-line text-[#8892b0] leading-relaxed">
+                            {skill.description}
+                          </p>
+                        </div>
+                      </div>
+                    )) || null}
+                  </div>
+                </TabsContent>
+
+                {/* ETC 탭 내용 */}
+                <TabsContent
+                  value="etc"
+                  className="bg-transparent min-h-[500px]"
+                >
+                  <div className="grid grid-cols-1 gap-4">
+                    {skillData?.etc?.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="flex items-center gap-4 p-2"
+                      >
+                        <Image
+                          src={skill.icon}
+                          alt={skill.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                        <div>
+                          <h3 className="text-md font-bold text-[#40F8D2] mb-1">
+                            {skill.name}
+                          </h3>
+                          <p className="text-sm whitespace-pre-line text-[#8892b0] leading-relaxed">
+                            {skill.description}
+                          </p>
+                        </div>
+                      </div>
+                    )) || null}
+                  </div>
+                </TabsContent>
+              </div>
+            </Tabs>
+          </div>
+        </section>
+
+        {/* Main Projects Section */}
+        <section id="projects" className="py-20 px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold mb-12">Main Projects</h2>
+            <div className="space-y-20">
+              {mainProjects.map((project, index) => (
+                <div key={index} className="grid md:grid-cols-2 gap-8">
+                  <div className="relative aspect-video">
+                    <Image
+                      src={project.image || '/placeholder.svg'}
+                      alt={project.title}
+                      fill
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">{project.title}</h3>
+                    <p className="text-sm mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="text-xs px-3 py-1 rounded-full bg-[#1a2744] text-[#40F8D2]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-4">
+                      <a
+                        href={project.demoLink}
+                        className="text-sm text-[#40F8D2] hover:underline inline-flex items-center"
+                      >
+                        Demo <ArrowRight className="ml-1 h-4 w-4" />
+                      </a>
+                      <a
+                        href={project.githubLink}
+                        className="text-sm text-[#40F8D2] hover:underline inline-flex items-center"
+                      >
+                        GitHub <ArrowRight className="ml-1 h-4 w-4" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Sub Projects Section */}
+        <section id="sub-projects" className="py-20 px-4 bg-[#0d1b31]">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold mb-12">Sub Projects</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {subProjects.map((project, index) => (
+                <div key={index} className="bg-[#1a2744] p-6 rounded-lg">
+                  <h3 className="font-medium mb-2">{project.title}</h3>
+                  <p className="text-sm mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="text-xs px-2 py-1 rounded-full bg-[#0d1b31] text-[#40F8D2]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.link}
+                    className="text-sm text-[#40F8D2] hover:underline inline-flex items-center"
+                  >
+                    자세히 보기 <ArrowRight className="ml-1 h-4 w-4" />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-8">Contact</h2>
+            <p className="mb-8">새로운 기회를 기다리고 있습니다.</p>
+            <a
+              href="mailto:qkrsuzxc123@gmail.com"
+              className="inline-flex items-center px-6 py-3 rounded-lg bg-[#40F8D2] text-[#0a1629] hover:bg-[#40F8D2]/90 transition-colors"
+            >
+              Send Mail
+            </a>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }
