@@ -1,6 +1,6 @@
 interface SectionTitleProps {
-  number: string
-  title: string
+  number: string;
+  title: string;
 }
 
 export function SectionTitle({ number, title }: SectionTitleProps) {
@@ -10,6 +10,5 @@ export function SectionTitle({ number, title }: SectionTitleProps) {
       <span className="text-white">{title}</span>
       <div className="h-[1px] bg-[#233554] flex-grow ml-4" />
     </h2>
-  )
+  );
 }
-

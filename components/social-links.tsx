@@ -1,14 +1,14 @@
-"use client"
+'use client';
 
-import { Github, Gitlab, Book } from "lucide-react"
-import { motion } from "framer-motion"
+import { Github, Gitlab, Book } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function SocialLinks() {
   const links = [
-    { icon: Book, href: "#", label: "Blog" },
-    { icon: Github, href: "https://github.com/Sugwan-p", label: "GitHub" },
-    { icon: Gitlab, href: "#", label: "GitLab" },
-  ]
+    { icon: Book, href: '#', label: 'Blog' },
+    { icon: Github, href: 'https://github.com/Sugwan-p', label: 'GitHub' },
+    { icon: Gitlab, href: '#', label: 'GitLab' },
+  ];
 
   return (
     <motion.div
@@ -35,6 +35,5 @@ export function SocialLinks() {
         <div className="w-[1px] h-32 bg-[#8892b0]" />
       </div>
     </motion.div>
-  )
+  );
 }
-

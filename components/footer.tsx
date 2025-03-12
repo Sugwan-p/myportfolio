@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Github, Linkedin, Twitter } from "lucide-react"
+import Link from 'next/link';
+import { Github, Linkedin, Twitter } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -12,15 +12,24 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-4">
-            <Link href="#" className="p-2 bg-gray-800 rounded-full hover:bg-[#ff6b45] transition-colors">
+            <Link
+              href="#"
+              className="p-2 bg-gray-800 rounded-full hover:bg-[#ff6b45] transition-colors"
+            >
               <Github className="h-5 w-5" />
               <span className="sr-only">Github</span>
             </Link>
-            <Link href="#" className="p-2 bg-gray-800 rounded-full hover:bg-[#ff6b45] transition-colors">
+            <Link
+              href="#"
+              className="p-2 bg-gray-800 rounded-full hover:bg-[#ff6b45] transition-colors"
+            >
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </Link>
-            <Link href="#" className="p-2 bg-gray-800 rounded-full hover:bg-[#ff6b45] transition-colors">
+            <Link
+              href="#"
+              className="p-2 bg-gray-800 rounded-full hover:bg-[#ff6b45] transition-colors"
+            >
               <Twitter className="h-5 w-5" />
               <span className="sr-only">Twitter</span>
             </Link>
@@ -32,6 +41,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-

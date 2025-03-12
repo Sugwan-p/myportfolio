@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 
 export function EmailLink() {
   return (
@@ -14,13 +14,12 @@ export function EmailLink() {
         <a
           href="mailto:qkrsuzxc123@gmail.com"
           className="vertical-text text-[#8892b0] hover:text-[#40F8D2] transition-colors tracking-widest text-sm"
-          style={{ writingMode: "vertical-rl" }}
+          style={{ writingMode: 'vertical-rl' }}
         >
           qkrsuzxc123@gmail.com
         </a>
         <div className="w-[1px] h-32 bg-[#8892b0]" />
       </div>
     </motion.div>
-  )
+  );
 }
-

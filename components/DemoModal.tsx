@@ -11,7 +11,7 @@ interface Project {
   image?: string;
   notionLink?: string;
   githubLink?: string;
-  contribution?: number
+  contribution?: number;
 }
 
 interface DemoModalProps {

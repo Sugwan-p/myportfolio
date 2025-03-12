@@ -10,7 +10,6 @@ import { EmailLink } from '@/components/email-link';
 import { SectionTitle } from '@/components/section-title';
 import { Header } from '@/components/header';
 import profile from './profile.jpg';
-import DemoModal from '@/components/DemoModal';
 
 // 프로젝트 타입 정의
 interface Project {
@@ -26,7 +25,6 @@ interface Project {
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [activeSkill, setActiveSkill] = useState('frontend');
   const [openDemoModal, setOpenDemoModal] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   // About 섹션에 사용할 ref
@@ -256,8 +254,7 @@ export default function Home() {
               className="text-3xl md:text-5xl text-[#8892b0] mb-8"
             >
               저는 끊임없는 도전을 즐기며,
-              <br />
-              웹 개발의 매력에 빠져 있습니다.
+              <br />웹 개발의 매력에 빠져 있습니다.
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

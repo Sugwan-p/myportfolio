@@ -1,4 +1,3 @@
-import DemoModal from '@/components/DemoModal';
 
 interface Project {
   title: string;
