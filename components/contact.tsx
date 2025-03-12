@@ -14,7 +14,7 @@ export default function Contact() {
     message: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -24,6 +24,7 @@ export default function Contact() {
     alert('메시지가 전송되었습니다!');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
+  
   
 
   const contactInfo = [
