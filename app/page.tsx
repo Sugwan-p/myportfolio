@@ -238,7 +238,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="text-[#40F8D2] text-lg mb-4"
             >
-              안녕하세요. 저는 포론트 엔드 개발자
+              안녕하세요. 저는 프론트 엔드 개발자
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
