@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
@@ -10,48 +10,83 @@ import { EmailLink } from '@/components/email-link';
 import { SectionTitle } from '@/components/section-title';
 import { Header } from '@/components/header';
 import profile from './profile.jpg';
+import DemoModal from '@/components/DemoModal';
+
+// 프로젝트 타입 정의
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  demoLink?: string;
+  githubLink?: string;
+  notionLink?: string;
+  contribution?: number;
+}
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [activeSkill, setActiveSkill] = useState('frontend');
+  const [openDemoModal, setOpenDemoModal] = useState<boolean>(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  // About 섹션에 사용할 ref
+  const aboutRef = useRef<HTMLElement>(null);
 
-  const mainProjects = [
+  const handleDemoClick = (project: Project) => {
+    setSelectedProject(project);
+    setOpenDemoModal(true);
+  };
+
+  const mainProjects: Project[] = [
     {
       title: 'First Project',
       description:
-        '프로젝트에 대한 상세한 설명이 들어갑니다. 이 프로젝트는 어떤 문제를 해결하기 위해 시작되었으며, 어떤 기술을 사용했고, 어떤 결과를 얻었는지 설명합니다.',
+        'React를 활용하여 직관적인 UI/UX를 제공하고, 일정 관리, 추천 장소 탐색, 여행 팁 공유를 위한 커뮤니티 기능을 담았습니다. 제주에서의 한 달을 보다 쉽고 편안하게 계획하도록 도와줍니다.',
       image: '/projectImages/200OK.png',
-      tags: ['React.js', 'JavaScript', 'Tailwind CSS', 'OPEN API'],
+      tags: ['React.js', 'JavaScript', 'Tailwind CSS', 'OPEN API', 'Redux'],
       demoLink: '#',
       githubLink: 'https://github.com/Sugwan-p/jejumonth-frontend/tree/main',
+      notionLink:
+        'https://efficient-knot-8e2.notion.site/1b3931125dd680759976daa060aa3fde?v=1b3931125dd6816d88c2000cba4c7216',
+      contribution: 20,
     },
     {
-      title: '프로젝트 2',
+      title: 'Second Project',
       description:
         '두 번째 프로젝트에 대한 설명입니다. 프로젝트의 목적, 사용된 기술, 해결한 문제점 등을 자세히 설명합니다.',
-      image: '/placeholder.svg?height=400&width=600',
-      tags: ['React', 'Node.js', 'MongoDB', 'Docker'],
+      image: '/projectImages/RiedOn.png',
+      tags: [
+        'Vue.js',
+        'JavaScript',
+        'Tailwind CSS',
+        'OPEN API',
+        'Pinia',
+        'Vuetify',
+      ],
       demoLink: '#',
-      githubLink: '#',
+      githubLink: 'https://github.com/Sugwan-p/RideOn/tree/main',
+      notionLink:
+        'https://efficient-knot-8e2.notion.site/1b4931125dd680648bedc53c886608f0?v=1b4931125dd6816e9557000c8e7890fe',
+      contribution: 25,
     },
   ];
 
   const subProjects = [
     {
-      title: '포토폴리오',
+      title: 'MySite',
       description: '개인 포토폴리오 사이트',
+      tags: ['next.js', 'tailwindCSS', 'typescript'],
+      link: 'https://github.com/Sugwan-p/myportfolio',
+    },
+    {
+      title: '추가 예정입니다',
+      description: '추가 예정입니다',
       tags: ['next.js', 'tailwindCSS', 'typescript'],
       link: '#',
     },
     {
-      title: '포토폴리오',
-      description: '개인 포토폴리오 사이트',
-      tags: ['next.js', 'tailwindCSS', 'typescript'],
-      link: '#',
-    },
-    {
-      title: '포토폴리오',
-      description: '개인 포토폴리오 사이트',
+      title: '추가 예정입니다',
+      description: '추가 예정입니다',
       tags: ['next.js', 'tailwindCSS', 'typescript'],
       link: '#',
     },
@@ -170,6 +205,22 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  // Intersection Observer를 사용해 About 섹션이 50% 이상 보이면 자동 스크롤
+  useEffect(() => {
+    if (!aboutRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(aboutRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   if (!mounted) return null;
 
   return (
@@ -205,7 +256,8 @@ export default function Home() {
               className="text-3xl md:text-5xl text-[#8892b0] mb-8"
             >
               저는 끊임없는 도전을 즐기며,
-              <br />웹 개발의 매력에 빠져 있습니다.
+              <br />
+              웹 개발의 매력에 빠져 있습니다.
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -220,8 +272,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="py-20 px-4">
+        {/* About Section (자동 스크롤 적용) */}
+        <section id="about" ref={aboutRef} className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <SectionTitle number="01" title="About Me" />
             <div className="grid md:grid-cols-2 gap-12">
@@ -387,7 +439,6 @@ export default function Home() {
                 </h2>
 
                 {/* FrontEnd 탭 내용 */}
-                {/* FrontEnd 탭 내용 */}
                 <TabsContent
                   value="frontend"
                   className="bg-transparent min-h-[500px]"
@@ -398,8 +449,6 @@ export default function Home() {
                         key={skill.name}
                         className="flex items-center gap-4 p-2"
                       >
-                        {/* 기존: 동그란 테두리 div 감싸고 있었음 -> 제거 */}
-                        {/* 새로: Image 자체에 width/height를 지정해 동일 크기로 표시 */}
                         <Image
                           src={skill.icon}
                           alt={skill.name}
@@ -420,7 +469,6 @@ export default function Home() {
                   </div>
                 </TabsContent>
 
-                {/* BackEnd 탭 내용 */}
                 {/* BackEnd 탭 내용 */}
                 <TabsContent
                   value="backend"
@@ -578,12 +626,12 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="flex gap-4">
-                      <a
-                        href={project.demoLink}
+                      <button
+                        onClick={() => handleDemoClick(project)}
                         className="text-sm text-[#40F8D2] hover:underline inline-flex items-center"
                       >
                         Demo <ArrowRight className="ml-1 h-4 w-4" />
-                      </a>
+                      </button>
                       <a
                         href={project.githubLink}
                         className="text-sm text-[#40F8D2] hover:underline inline-flex items-center"
@@ -643,6 +691,13 @@ export default function Home() {
           </div>
         </section>
       </main>
+      {openDemoModal && (
+        <DemoModal
+          open={openDemoModal}
+          onClose={() => setOpenDemoModal(false)}
+          project={selectedProject}
+        />
+      )}
     </>
   );
 }

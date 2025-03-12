@@ -18,6 +18,7 @@ const projectTemplates = [
     technologies: ["React", "Next.js", "Tailwind CSS"],
     demoLink: "#",
     githubLink: "#",
+    notionLink: 'www.naver.com'
   },
   {
     id: 2,
