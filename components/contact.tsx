@@ -14,18 +14,17 @@ export default function Contact() {
     message: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 여기에 폼 제출 로직을 추가할 수 있습니다
-    console.log(formData);
     alert('메시지가 전송되었습니다!');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
+  
 
   const contactInfo = [
     {
