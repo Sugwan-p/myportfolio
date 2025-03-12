@@ -10,6 +10,8 @@ import { EmailLink } from '@/components/email-link';
 import { SectionTitle } from '@/components/section-title';
 import { Header } from '@/components/header';
 import profile from './profile.jpg';
+import DemoModal from '@/components/DemoModal';
+
 
 // 프로젝트 타입 정의
 interface Project {
