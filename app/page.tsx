@@ -12,7 +12,6 @@ import { Header } from '@/components/header';
 import profile from './profile.jpg';
 import DemoModal from '@/components/DemoModal';
 
-
 // 프로젝트 타입 정의
 interface Project {
   title: string;
@@ -307,9 +306,9 @@ export default function Home() {
                       프론트엔드 개발은 대부분 팀원들과 함께 협업하며
                       진행했습니다. 이 과정에서 다양한 문제를 함께 해결해
                       나가며, 때론 기능 구현에 며칠이 걸리기도 했습니다. 하지만
-                      이런 과정을 통해 개발에 있어서 "해결할 수 없는 문제는
-                      없다"는 확신을 가지게 되었습니다. 이로써, 끝까지 해결해
-                      나갈 수 있는 자신감을 얻게 되었습니다.
+                      이런 과정을 통해 개발에 있어서 &quot;해결할 수 없는 문제는
+                      없다&quot;는 확신을 가지게 되었습니다. 이로써, 끝까지
+                      해결해 나갈 수 있는 자신감을 얻게 되었습니다.
                     </p>
                   </div>
                 </div>
