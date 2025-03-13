@@ -282,9 +282,9 @@ export default function Home() {
                       [첫인상을 주는 프론트엔드]
                     </h3>
                     <p className="text-sm leading-relaxed">
-                      학부생 시절 React, Next.js, Vue.js 를 활용한 웹 개발
+                      학생 시절 React, Next.js, Vue.js 를 활용한 웹 개발
                       경험이 있으며, 사용자에게 먼저 보여지는 프론트엔드에
-                      흥미를 느꼈고 React, Next.js를 활용한 프론트엔드 개발을
+                      흥미를 느꼈고 React, Next.js Vue.js 를 활용한 프론트엔드 개발을
                       주로 진행하고 있습니다.
                     </p>
                   </div>
