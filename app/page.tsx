@@ -104,7 +104,7 @@ export default function Home() {
         description: '순수 CSS를 이용하여 레이아웃을 구성할 수 있습니다.',
       },
       {
-        icon: '/images/javaScript.png',
+        icon: '/images/jslogo.png',
         name: 'JavaScript',
         description: 'ES6+ 문법을 활용하여 코드를 작성할 수 있습니다.',
       },
