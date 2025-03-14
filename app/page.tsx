@@ -52,7 +52,7 @@ export default function Home() {
     {
       title: 'Second Project',
       description:
-        '두 번째 프로젝트에 대한 설명입니다. 프로젝트의 목적, 사용된 기술, 해결한 문제점 등을 자세히 설명합니다.',
+        '사용자가 원하는 순간 다크 모드와 라이트 모드를 자유롭게 전환할 수 있으며, 테마 변화만으로도 완전히 새로운 사이트에 접속한 듯한 경험을 제공합니다. 자전거를 타며 취미 생활을 즐기는 라이더들을 위해 편의시설과 도로 정보를 쉽게 확인할 수 있으며, 다양한 자전거 관련 상품도 편리하게 구매할 수 있도록 지원합니다.',
       image: '/projectImages/RiedOn.png',
       tags: [
         'Vue.js',
@@ -282,9 +282,9 @@ export default function Home() {
                       [첫인상을 주는 프론트엔드]
                     </h3>
                     <p className="text-sm leading-relaxed">
-                      학생 시절 React, Next.js, Vue.js 를 활용한 웹 개발
-                      경험이 있으며, 사용자에게 먼저 보여지는 프론트엔드에
-                      흥미를 느꼈고 React, Next.js Vue.js 를 활용한 프론트엔드 개발을
+                      학생 시절 React, Next.js, Vue.js 를 활용한 웹 개발 경험이
+                      있으며, 사용자에게 먼저 보여지는 프론트엔드에 흥미를
+                      느꼈고 React, Next.js Vue.js 를 활용한 프론트엔드 개발을
                       주로 진행하고 있습니다.
                     </p>
                   </div>
