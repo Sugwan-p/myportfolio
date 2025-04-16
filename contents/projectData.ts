@@ -36,7 +36,7 @@ export const mainProjects: Project[] = [
     title: "GymMate",
     description:
       "GymMate는 헬스 유저와 트레이너를 연결하는 통합 피트니스 플랫폼입니다. 사용자 경험에 중점을 두고, 라이트/다크 모드를 자유롭게 전환할 수 있는 직관적인 UI를 제공하며, 제휴 헬스장 검색부터 운동 기록, 결제 내역 확인까지 전 과정을 손쉽게 관리할 수 있습니다. Zustand를 활용한 글로벌 상태 관리와 Hero UI 기반의 일관된 디자인 시스템을 통해 복잡한 기능도 깔끔하고 효율적으로 구현했습니다.",
-    image: "/projectImages/gymmatemain.mov",
+    image: "/projectImages/gymmatemain.png",
     video: "/projectImages/gymmatemain.mov",
     tags: [
       "Next.js",
