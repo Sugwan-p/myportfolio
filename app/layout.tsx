@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import IntroScreen from "@/components/templates/IntroScreen";
+import CustomCursor from "@/components/CustomCursor";
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth">
       <body className={notoSansKr.className}>
+        <CustomCursor />
         <IntroScreen />
         {children}
       </body>
