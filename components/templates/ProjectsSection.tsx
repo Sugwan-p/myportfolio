@@ -222,106 +222,132 @@ const ProjectsSection = ({
 
       <Modal isOpen={isModalOpen} onClose={closeModal} title={selectedTitle}>
         {renderProjectContent(selectedTitle)}
-      </Modal>
-
-      {isModalOpen && selectedTitle === "Jeju-Month" && (
-        <div className="fixed right-6 top-20 z-[999] flex flex-col items-center gap-4 pointer-events-auto">
-          {/* GitHub 버튼 */}
-          <div className="relative w-12 h-12">
-            <a
-              onClick={(e) => e.stopPropagation()}
-              href="https://github.com/Sugwan-p/jejumonth-frontend"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow hover:scale-110 transition-transform"
-            >
-              <Image
-                src="/icons/Github.svg"
-                alt="GitHub"
-                width={28}
-                height={28}
-              />
-            </a>
-          </div>
-
-          <p className="-mt-3 text-xs text-gray-200">Github</p>
-
-          {/* 티스토리 버튼 + 리스트 */}
-          <div
-            className="relative group"
-            onMouseEnter={() => setShowBlogList(true)}
-            onMouseLeave={() => setShowBlogList(false)}
-          >
-            <button className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow hover:scale-110 transition-transform">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 459 459">
-                <title>티스토리 로고</title>
-                <path
-                  d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
-                  fill="#FF5722"
+        {selectedTitle === "Jeju-Month" && (
+          <div className="fixed right-6 top-20 z-[999] flex flex-col items-center gap-4">
+            {/* GitHub 버튼 */}
+            <div className="relative w-12 h-12">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(
+                    "https://github.com/Sugwan-p/jejumonth-frontend",
+                    "_blank",
+                    "noopener,noreferrer"
+                  );
+                }}
+                className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow hover:scale-110 transition-transform cursor-pointer"
+              >
+                <Image
+                  src="/icons/Github.svg"
+                  alt="GitHub"
+                  width={28}
+                  height={28}
                 />
-              </svg>
-            </button>
-            <div className="flex flex-col items-center">
-              <p className="mt-1  text-xs text-gray-200">Tistory</p>
+              </button>
             </div>
 
-            {/* 블로그 리스트 */}
+            <p className="-mt-3 text-xs text-gray-200">Github</p>
+
+            {/* 티스토리 버튼 + 리스트 */}
             <div
-              className={`absolute right-[64px] top-0 transition-all duration-300 w-[260px] bg-white rounded shadow-lg p-4 z-10 ${
-                showBlogList
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-4 "
-              }`}
+              className="relative group"
+              onMouseEnter={() => setShowBlogList(true)}
+              onMouseLeave={() => setShowBlogList(false)}
             >
-              <p className="text-sm font-semibold mb-2">관련 블로그 바로가기</p>
-              <ul className="space-y-2 text-sm text-mono_700 py-2">
-                <li>
-                  <a
-                    href="https://suhat.tistory.com/2"
-                    target="_blank"
-                    className="flex items-center gap-2 hover:underline px-4 py-3 rounded bg-gray-100 hover:bg-gray-200 transition-colors"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 459 459"
-                      width={24}
-                      height={24}
+              <button
+                type="button"
+                className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow hover:scale-110 transition-transform"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 459 459">
+                  <title>티스토리 로고</title>
+                  <path
+                    d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
+                    fill="#FF5722"
+                  />
+                </svg>
+              </button>
+              <div className="flex flex-col items-center">
+                <p className="mt-1 text-xs text-gray-200">Tistory</p>
+              </div>
+
+              {/* 블로그 리스트 */}
+              <div
+                className={`absolute right-[64px] top-0 transition-all duration-300 w-[260px] bg-white rounded shadow-lg p-4 z-10 ${
+                  showBlogList
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-4 pointer-events-none"
+                }`}
+              >
+                <p className="text-sm font-semibold mb-2">
+                  관련 블로그 바로가기
+                </p>
+                <ul className="space-y-2 text-sm text-mono_700 py-2">
+                  <li>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open(
+                          "https://suhat.tistory.com/2",
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }}
+                      className="w-full flex items-center gap-2 hover:underline px-4 py-3 rounded bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
                     >
-                      <title>티스토리 로고</title>
-                      <path
-                        d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
-                        fill="#FF5722"
-                      />
-                    </svg>
-                    <p>개발 회고록</p>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://suhat.tistory.com/1"
-                    target="_blank"
-                    className="flex items-center gap-2 hover:underline px-4 py-3 rounded bg-gray-100 hover:bg-gray-200 transition-colors"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 459 459"
-                      width={24}
-                      height={24}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 459 459"
+                        width={24}
+                        height={24}
+                      >
+                        <title>티스토리 로고</title>
+                        <path
+                          d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
+                          fill="#FF5722"
+                        />
+                      </svg>
+                      <p>개발 회고록</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open(
+                          "https://suhat.tistory.com/1",
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }}
+                      className="w-full flex items-center gap-2 hover:underline px-4 py-3 rounded bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
                     >
-                      <title>티스토리 로고</title>
-                      <path
-                        d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
-                        fill="#FF5722"
-                      />
-                    </svg>
-                    <p>발표자료 및 피그마</p>
-                  </a>
-                </li>
-              </ul>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 459 459"
+                        width={24}
+                        height={24}
+                      >
+                        <title>티스토리 로고</title>
+                        <path
+                          d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
+                          fill="#FF5722"
+                        />
+                      </svg>
+                      <p>발표자료 및 피그마</p>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </Modal>
     </>
   );
 };

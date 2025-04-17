@@ -23,10 +23,13 @@ const Modal = ({ isOpen, onClose, title = "Modal", children }: ModalProps) => (
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="fixed inset-0 bg-black bg-opacity-50" />
+        <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
       </Transition.Child>
 
-      <div className="fixed inset-0 flex items-center justify-center p-4 overflow-auto">
+      <div
+        className="fixed inset-0 flex items-center justify-center p-4 overflow-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <Transition.Child
           static
           as={Fragment}
