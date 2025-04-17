@@ -223,9 +223,9 @@ const ProjectsSection = ({
       <Modal isOpen={isModalOpen} onClose={closeModal} title={selectedTitle}>
         {renderProjectContent(selectedTitle)}
         {selectedTitle === "Jeju-Month" && (
-          <div className="fixed right-6 top-20 z-[999] flex flex-col items-center gap-4">
+          <div className="fixed right-24 md:right-12 top-12 md:top-16 z-[999] flex flex-row items-center gap-6 md:flex-col md:gap-8">
             {/* GitHub 버튼 */}
-            <div className="relative w-12 h-12">
+            <div className="relative w-12 h-12 -mt-4 md:mt-0  items-center justify-center">
               <button
                 type="button"
                 onClick={(e) => {
@@ -237,7 +237,7 @@ const ProjectsSection = ({
                     "noopener,noreferrer"
                   );
                 }}
-                className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow hover:scale-110 transition-transform cursor-pointer"
+                className="-mt-1 w-12 h-12 rounded-full bg-gray-300 md:bg-white flex items-center justify-center shadow hover:scale-110 transition-transform cursor-pointer"
               >
                 <Image
                   src="/icons/Github.svg"
@@ -246,13 +246,14 @@ const ProjectsSection = ({
                   height={28}
                 />
               </button>
+              <p className="mt-2 text-xs text-black md:text-white font-medium">
+                Github
+              </p>
             </div>
-
-            <p className="-mt-3 text-xs text-gray-200">Github</p>
 
             {/* 티스토리 버튼 + 리스트 */}
             <div
-              className="relative group"
+              className="relative group flex flex-col items-center"
               onMouseEnter={() => setShowBlogList(true)}
               onMouseLeave={() => setShowBlogList(false)}
             >
@@ -268,9 +269,9 @@ const ProjectsSection = ({
                   />
                 </svg>
               </button>
-              <div className="flex flex-col items-center">
-                <p className="mt-1 text-xs text-gray-200">Tistory</p>
-              </div>
+              <p className="mt-2 text-xs text-black md:text-white font-medium">
+                Tistory
+              </p>
 
               {/* 블로그 리스트 */}
               <div
@@ -280,7 +281,7 @@ const ProjectsSection = ({
                     : "opacity-0 translate-x-4 pointer-events-none"
                 }`}
               >
-                <p className="text-sm font-semibold mb-2">
+                <p className="text-sm font-semibold mb-2 text-black">
                   관련 블로그 바로가기
                 </p>
                 <ul className="space-y-2 text-sm text-mono_700 py-2">
