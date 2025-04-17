@@ -101,19 +101,17 @@ const JejuMonthContent = () => {
           </h4>
           <ul className="list-disc pl-5 space-y-1 mt-2">
             <li>
-              사용자가 작성한 일정 조회 및 추가 기능 캘린더 형식으로 표시
-              표시됩니다
+              사용자가 작성한 일정을 조회하고 추가할 수 있는 캘린더 기능을
+              제공합니다
+            </li>
+            <li>제주도 컨텐츠를 각 카테고리별로 선택하여 조회할 수 있습니다</li>
+            <li>
+              제주도 여행에서 좋았던 점과 아쉬웠던 점 등을 공유하여 사용자들이
+              참고할 수 있도록 합니다
             </li>
             <li>
-              제주도 컨텐츠를 각 카테로리별로 선택하려 조회 할 수 있습니다
-            </li>
-            <li>
-              제주도 여행에서 좋았던점 아쉬웠던 점 등을 공유하여 사용자들이
-              참고할 수 있도록 합니다.
-            </li>
-            <li>
-              모든 사용사가 웹 서비스 이용시 보다 편하게 이용가능하도록
-              설계되었습니다.
+              모든 사용자가 웹 서비스를 보다 편리하게 이용할 수 있도록
+              설계되었습니다
             </li>
           </ul>
         </section>
@@ -189,7 +187,10 @@ const JejuMonthContent = () => {
                         }`}
                       />
                     </Disclosure.Button>
-                    <Disclosure.Panel className="px-4 py-3 text-sm text-gray-700 bg-white">
+                    <Disclosure.Panel
+                      onClick={(e) => e.stopPropagation()}
+                      className="px-4 py-3 text-sm text-gray-700 bg-white"
+                    >
                       {content}
                     </Disclosure.Panel>
                   </div>

@@ -13,7 +13,7 @@ interface ModalProps {
 
 const Modal = ({ isOpen, onClose, title = "Modal", children }: ModalProps) => (
   <Transition show={isOpen} as={Fragment}>
-    <Dialog as="div" className="relative z-50" onClose={onClose}>
+    <Dialog as="div" className="relative z-50" onClose={onClose} static>
       <Transition.Child
         as={Fragment}
         enter="ease-out duration-300"
@@ -28,6 +28,7 @@ const Modal = ({ isOpen, onClose, title = "Modal", children }: ModalProps) => (
 
       <div className="fixed inset-0 flex items-center justify-center p-4 overflow-auto">
         <Transition.Child
+          static
           as={Fragment}
           enter="ease-out duration-300"
           enterFrom="scale-95 opacity-0"
@@ -36,10 +37,16 @@ const Modal = ({ isOpen, onClose, title = "Modal", children }: ModalProps) => (
           leaveFrom="scale-100 opacity-100"
           leaveTo="scale-95 opacity-0"
         >
-          <Dialog.Panel className="w-full max-w-4xl rounded-xl bg-white p-6 shadow-xl dark:bg-mono_100 overflow-y-auto max-h-[90vh]">
+          <Dialog.Panel
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-4xl rounded-xl bg-white p-6 shadow-xl  overflow-y-auto max-h-[90vh]"
+          >
             <div className="sticky top-0 z-10 bg-white dark:bg-mono_100 pb-4 mb-4">
               <div className="flex items-center justify-between">
-                <Dialog.Title className="text-lg font-semibold text-mono_900">
+                <Dialog.Title
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-lg font-semibold text-mono_900"
+                >
                   {title}
                 </Dialog.Title>
                 <button
