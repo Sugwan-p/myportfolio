@@ -56,17 +56,15 @@ const SkillsSection = () => (
         {/* 왼쪽 탭 목록 */}
         <div className="w-1/4 border-r border-[#8892b0] pr-6">
           <TabsList className="flex flex-col gap-5 items-start w-full p-0 border-none mt-[100px]">
-            {["frontend", "backend", "database", "tools", "etc"].map(
-              (category) => (
-                <TabsTrigger
-                  key={category}
-                  value={category}
-                  className="w-full text-left px-2 py-1 text-base font-bold border-none hover:border-b-2 hover:border-[#40F8D2] hover:text-[#40F8D2] data-[state=active]:border-b-2 data-[state=active]:border-white data-[state=active]:text-white transition-all"
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </TabsTrigger>
-              )
-            )}
+            {["frontend", "database", "tools", "etc"].map((category) => (
+              <TabsTrigger
+                key={category}
+                value={category}
+                className="w-full text-left px-2 py-1 text-base font-bold border-none hover:border-b-2 hover:border-[#40F8D2] hover:text-[#40F8D2] data-[state=active]:border-b-2 data-[state=active]:border-white data-[state=active]:text-white transition-all"
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </TabsTrigger>
+            ))}
           </TabsList>
         </div>
 
@@ -76,7 +74,7 @@ const SkillsSection = () => (
             Skill Stack @ Language
           </h2>
 
-          {(["frontend", "backend", "database", "tools", "etc"] as const).map(
+          {(["frontend", "database", "tools", "etc"] as const).map(
             (category) => (
               <TabsContent
                 key={category}

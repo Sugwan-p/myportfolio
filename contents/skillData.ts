@@ -43,14 +43,7 @@ export const skillData = {
       description: "Vue.js를 활용하여 컴포넌트를 작성할 수 있습니다.",
     },
   ],
-  backend: [
-    {
-      icon: "/images/node.png",
-      name: "node.js",
-      description:
-        "부트캠프에서 배운 언어로, 백엔드 서버를 구축 해본 경험이 있습니다.",
-    },
-  ],
+
   database: [
     {
       icon: "/images/firebase.png",
@@ -61,6 +54,16 @@ export const skillData = {
       icon: "/images/supabase.jpg",
       name: "supabase",
       description: "supabase를 활용한 데이터베이스 관리를 경험했습니다.",
+    },
+    {
+      icon: "/images/mysql.png",
+      name: "MySQL",
+      description: "MySQL을 활용한 데이터베이스 관리를 경험했습니다.",
+    },
+    {
+      icon: "/images/mongodb.png",
+      name: "MongoDB",
+      description: "MongoDB를 활용한 데이터베이스 관리를 경험했습니다.",
     },
   ],
   tools: [

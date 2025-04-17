@@ -1,10 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import type { Project } from "@/types/project";
+import Modal from "@/components/Modal";
+import JejuMonthContent from "@/contents/JejuMonth";
 
 interface Props {
   mainProjects: Project[];
@@ -28,11 +31,13 @@ const ProjectItem = ({
   index,
   onDemoClick,
   onVideoClick,
+  onTitleClick,
 }: {
   project: Project;
   index: number;
   onDemoClick: (project: Project) => void;
   onVideoClick: (url: string, index: number) => void;
+  onTitleClick: (title: string) => void;
 }) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
 
@@ -70,7 +75,12 @@ const ProjectItem = ({
         </div>
       )}
       <div>
-        <h3 className="text-xl font-bold mb-4">{project.title}</h3>
+        <h3
+          className="text-xl font-bold mb-4 cursor-pointer hover:underline"
+          onClick={() => onTitleClick(project.title)}
+        >
+          {project.title}
+        </h3>
         <p className="text-sm mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-6">
           {project.tags.map((tag, tagIndex) => (
@@ -151,36 +161,68 @@ const ProjectsSection = ({
   subProjects,
   onDemoClick,
   onVideoClick,
-}: Props) => (
-  <>
-    <section id="projects" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold mb-12">Main Projects</h2>
-        <div className="space-y-20">
-          {mainProjects.map((project, index) => (
-            <ProjectItem
-              key={index}
-              index={index}
-              project={project}
-              onDemoClick={onDemoClick}
-              onVideoClick={onVideoClick}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+}: Props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("");
 
-    <section id="sub-projects" className="py-20 px-4 bg-[#0d1b31]">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold mb-12">Sub Projects</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {subProjects.map((project, index) => (
-            <SubProjectItem key={index} index={index} project={project} />
-          ))}
+  const openModal = (title: string) => {
+    setSelectedTitle(title);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => setIsModalOpen(false);
+
+  const renderProjectContent = (title: string): React.ReactNode => {
+    switch (title) {
+      case "Jeju-Month":
+        return <JejuMonthContent />;
+      // case 'GymMate': return <GymMateContent />
+      // case 'RideOn': return <RideOnContent />
+      default:
+        return (
+          <p className="text-sm text-mono_500">
+            임시 콘텐츠입니다. 추후 수정 예정입니다.
+          </p>
+        );
+    }
+  };
+
+  return (
+    <>
+      <section id="projects" className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-12">Main Projects</h2>
+          <div className="space-y-20">
+            {mainProjects.map((project, index) => (
+              <ProjectItem
+                key={index}
+                index={index}
+                project={project}
+                onDemoClick={onDemoClick}
+                onVideoClick={onVideoClick}
+                onTitleClick={openModal}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  </>
-);
+      </section>
+
+      <section id="sub-projects" className="py-20 px-4 bg-[#0d1b31]">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-12">Sub Projects</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {subProjects.map((project, index) => (
+              <SubProjectItem key={index} index={index} project={project} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={selectedTitle}>
+        {renderProjectContent(selectedTitle)}
+      </Modal>
+    </>
+  );
+};
 
 export default ProjectsSection;

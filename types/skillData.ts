@@ -43,24 +43,7 @@ export const skillData = {
       description: "Vue.js를 활용하여 컴포넌트를 작성할 수 있습니다.",
     },
   ],
-  backend: [
-    {
-      icon: "/images/node.png",
-      name: "node.js",
-      description:
-        "부트캠프에서 배운 언어로, 백엔드 서버를 구축 해본 경험이 있습니다.",
-    },
-    {
-      icon: "/images/java.png",
-      name: "Java",
-      description: "Java를 활용하여 백엔드 서버를 구축할 수 있습니다.",
-    },
-    {
-      icon: "/images/python.png",
-      name: "Python",
-      description: "Python을 활용하여 백엔드 서버를 구축할 수 있습니다.",
-    },
-  ],
+
   database: [
     {
       icon: "/images/firebase.png",
