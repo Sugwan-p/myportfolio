@@ -1,9 +1,9 @@
 "use client";
 
 import { Disclosure } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const techItems = [
   {
@@ -80,6 +80,7 @@ const JejuMonthContent = () => {
     contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   return (
     <div className="flex justify-center px-4">
       <div
@@ -238,6 +239,7 @@ const JejuMonthContent = () => {
               <div key={src} className="text-center">
                 <div className="relative w-full h-48">
                   <Image
+                    onClick={() => setSelectedImage(src)}
                     src={src}
                     alt={alt}
                     width={400}
@@ -250,6 +252,28 @@ const JejuMonthContent = () => {
               </div>
             ))}
           </div>
+          {selectedImage && (
+            <div
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center"
+            >
+              <div className="relative w-[90%] max-w-4xl">
+                <Image
+                  src={selectedImage}
+                  alt="확대 이미지"
+                  width={400}
+                  height={300}
+                  className="w-full rounded-lg"
+                />
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-2 right-2 text-black hover:text-mono_400 bg-transparent rounded-full p-1 hover:bg-white/20 transition-colors"
+                >
+                  <XMarkIcon className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          )}
         </section>
       </div>
     </div>

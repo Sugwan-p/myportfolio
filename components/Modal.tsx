@@ -44,7 +44,7 @@ const Modal = ({ isOpen, onClose, title = "Modal", children }: ModalProps) => (
             onClick={(e) => e.stopPropagation()}
             className="w-full max-w-4xl rounded-xl bg-white p-6 shadow-xl  overflow-y-auto max-h-[90vh]"
           >
-            <div className="sticky top-0 z-10 bg-white dark:bg-mono_100 pb-4 mb-4">
+            <div className=" z-10 bg-white dark:bg-mono_100 pb-4 mb-4">
               <div className="flex items-center justify-between">
                 <Dialog.Title
                   onClick={(e) => e.stopPropagation()}
