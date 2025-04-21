@@ -9,6 +9,7 @@ import type { Project } from "@/types/project";
 import Modal from "@/components/Modal";
 import JejuMonthContent from "@/contents/JejuMonth";
 import RideOnContent from "@/contents/RideOn";
+import GymMateContent from "@/contents/GymMate";
 interface Props {
   mainProjects: Project[];
   subProjects: {
@@ -176,7 +177,8 @@ const ProjectsSection = ({
     switch (title) {
       case "Jeju-Month":
         return <JejuMonthContent />;
-      // case 'GymMate': return <GymMateContent />
+      case "GymMate":
+        return <GymMateContent />;
       case "RideOn":
         return <RideOnContent />;
       default:
