@@ -122,7 +122,7 @@ const JejuMonthContent = () => {
       >
         <div className="text-black  rounded-t-xl">
           <p className="text-sm mt-1">
-            2024.03.24 ~ 2024.04.15 | FE팀장 1명 | FE 팀원 2명
+            2024.03.24 ~ 2024.04.15 | FE팀원 3명 | BE 팀원 5명
           </p>
           <p className="text-[15px] font-medium mt-2">
             GymMate는 헬스장 회원을 위한 맞춤형 라이딩 정보 제공 플랫폼입니다.

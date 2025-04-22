@@ -535,6 +535,104 @@ const ProjectsSection = ({
             </div>
           </div>
         )}
+        {/* RideOn 관련 버튼 */}
+        {selectedTitle === "GymMate" && (
+          <div className="fixed right-24 md:right-12 top-12 md:top-16 z-[999] flex flex-row items-center gap-6 md:flex-col md:gap-8">
+            {/* GitHub  */}
+            <div className="relative w-12 h-12 -mt-4 md:mt-0  items-center justify-center">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(
+                    "https://github.com/Sugwan-p/WEB3_4_HelloWorld_FE",
+                    "_blank",
+                    "noopener,noreferrer"
+                  );
+                }}
+                className="-mt-1 w-12 h-12 rounded-full bg-gray-300 md:bg-white flex items-center justify-center shadow hover:scale-110 transition-transform cursor-pointer"
+              >
+                <Image
+                  src="/icons/Github.svg"
+                  alt="GitHub"
+                  width={28}
+                  height={28}
+                />
+              </button>
+              <p className="mt-2 text-xs text-black md:text-white font-medium">
+                Github
+              </p>
+            </div>
+
+            {/* 티스토리 버튼 + 리스트 */}
+            <div
+              className="relative group flex flex-col items-center"
+              onMouseEnter={() => setShowBlogList(true)}
+              onMouseLeave={() => setShowBlogList(false)}
+            >
+              <button
+                type="button"
+                className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow hover:scale-110 transition-transform"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 459 459">
+                  <title>티스토리 로고</title>
+                  <path
+                    d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
+                    fill="#FF5722"
+                  />
+                </svg>
+              </button>
+              <p className="mt-2 text-xs text-black md:text-white font-medium">
+                Tistory
+              </p>
+
+              {/* 블로그 리스트 */}
+              <div
+                className={`absolute right-[64px] top-0 transition-all duration-300 w-[260px] bg-white rounded shadow-lg p-4 z-10 ${
+                  showBlogList
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-4 pointer-events-none"
+                }`}
+              >
+                <p className="text-sm font-semibold mb-2 text-black">
+                  관련 블로그 바로가기
+                </p>
+                <ul className="space-y-2 text-sm text-mono_700 py-2">
+                  <li>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open(
+                          "https://suhat.tistory.com/7",
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }}
+                      className="w-full flex items-center gap-2 hover:underline px-4 py-3 rounded bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 459 459"
+                        width={24}
+                        height={24}
+                      >
+                        <title>티스토리 로고</title>
+                        <path
+                          d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"
+                          fill="#FF5722"
+                        />
+                      </svg>
+                      <p>프로젝트 회고록</p>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
       </Modal>
     </>
   );

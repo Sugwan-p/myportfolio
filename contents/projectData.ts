@@ -66,6 +66,6 @@ export const subProjects = [
     title: "UNO 보드게임",
     description: "UNO 보드게임 사이트 - [확장 예정]",
     tags: ["next.js", "tailwindCSS", "typescript", "Firebase"],
-    link: "https://github.com/Sugwan-p/UNO_Game",
+    link: "https://github.com/Sugwan-p/UNO",
   },
 ];
