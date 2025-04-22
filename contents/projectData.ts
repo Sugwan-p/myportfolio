@@ -58,8 +58,14 @@ export const mainProjects: Project[] = [
 export const subProjects = [
   {
     title: "MySite",
-    description: "개인 포트폴리오 사이트",
+    description: "개인 포트폴리오 사이트 - [계속 수정 중]",
     tags: ["next.js", "tailwindCSS", "typescript"],
     link: "https://github.com/Sugwan-p/myportfolio",
+  },
+  {
+    title: "UNO 보드게임",
+    description: "UNO 보드게임 사이트 - [확장 예정]",
+    tags: ["next.js", "tailwindCSS", "typescript", "Firebase"],
+    link: "https://github.com/Sugwan-p/UNO_Game",
   },
 ];
