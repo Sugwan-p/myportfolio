@@ -42,3 +42,25 @@ body {
   }
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
+/* next/app 공통 루트 */
+#__next,
+body > div {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 캔버스는 display:block이 기본 안전 */
+canvas {
+  display: block;
+}

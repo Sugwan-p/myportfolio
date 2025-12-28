@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useEffect, useState, useRef } from "react";
-import { Header } from "@/components/header";
-import { SocialLinks } from "@/components/social-links";
-import { EmailLink } from "@/components/email-link";
-import DemoModal from "@/components/DemoModal";
-import VideoModal from "@/components/VideoModal";
-import HeroSection from "@/components/templates/HeroSection";
-import AboutSection from "@/components/templates/AboutSection";
-import SkillsSection from "@/components/templates/SkillsSection";
-import ProjectsSection from "@/components/templates/ProjectsSection";
-import ContactSection from "@/components/templates/ContactSection";
-import { mainProjects, subProjects } from "@/contents/projectData";
-import { Project } from "@/types/project";
+import { useEffect, useState, useRef } from 'react';
+import { Header } from '@/components/header';
+import { SocialLinks } from '@/components/social-links';
+import { EmailLink } from '@/components/email-link';
+import DemoModal from '@/components/DemoModal';
+import VideoModal from '@/components/VideoModal';
+import HeroSection from '@/components/templates/HeroSection';
+import AboutSection from '@/components/templates/AboutSection';
+import SkillsSection from '@/components/templates/SkillsSection';
+import ProjectsSection from '@/components/templates/ProjectsSection';
+import ContactSection from '@/components/templates/ContactSection';
+import { mainProjects, subProjects } from '@/contents/projectData';
+import { Project } from '@/types/project';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -42,7 +42,7 @@ export default function Home() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          aboutRef.current?.scrollIntoView({ behavior: "smooth" });
+          aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
           observer.disconnect();
         }
       },
@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#0a1629] text-[#8892b0]">
+      <main className='min-h-screen bg-[#0a1629] text-[#8892b0] overflow-x-hidden'>
         <SocialLinks />
         <EmailLink />
         <HeroSection />
